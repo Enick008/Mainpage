@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>แดชบอร์ดกองช่างสุขาภิบาล</title>
-
-  <!-- ✅ Apple Touch Icon & Favicon -->
+  <!-- Favicon และ App Icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://img2.pic.in.th/pic/imagefa65b0afe859e7c3.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://img2.pic.in.th/pic/imagefa65b0afe859e7c3.png">
   <link rel="icon" type="image/png" sizes="192x192" href="https://img2.pic.in.th/pic/imagefa65b0afe859e7c3.png">
@@ -38,37 +37,36 @@
     }
   </style>
 </head>
-
 <body class="text-gray-800">
 
-<header class="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-md">
-  <div class="flex justify-between items-center flex-wrap">
-    <div class="flex items-center gap-4">
-      <!-- เปลี่ยนตรงนี้ -->
-      <div class="flex flex-col items-center gap-1">
-        <img src="https://img2.pic.in.th/pic/imagefa65b0afe859e7c3.png"
-             alt="แมวน้อยสุขาภิบาล"
-             class="w-20 h-20 rounded-full object-cover shadow-lg bg-white mb-2 border-2 border-blue-300">
-        <div class="text-base font-semibold text-pink-200 drop-shadow">แมวน้อยสุขาภิบาล</div>
-      </div>
+<header class="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-4 sm:p-6 shadow-md">
+  <div class="flex justify-between items-center flex-wrap gap-2">
+    <div class="flex items-center gap-3">
+      <div class="text-4xl">🏢</div>
       <div>
-        <h1 class="text-2xl font-bold">กองช่างสุขาภิบาล</h1>
-        <p class="text-md">ระบบสนับสนุนการตัดสินใจแบบรวมศูนย์</p>
+        <h1 class="text-xl sm:text-2xl font-bold leading-tight">กองช่างสุขาภิบาล</h1>
+        <p class="text-sm sm:text-md">ระบบสนับสนุนการตัดสินใจแบบรวมศูนย์</p>
       </div>
     </div>
-    <div class="text-sm text-right mt-4 sm:mt-0">
+    <div class="text-xs sm:text-sm text-right mt-3 sm:mt-0">
       <span id="currentDate" class="block mb-1"></span>
-      <button onclick="logout()" class="bg-white text-blue-700 px-4 py-2 rounded-xl shadow hover:bg-gray-100 transition flex items-center gap-1">🚪 ออกจากระบบ</button>
+      <button onclick="logout()" class="bg-white text-blue-700 px-3 sm:px-4 py-2 rounded-xl shadow hover:bg-gray-100 transition flex items-center gap-1">🚪 ออกจากระบบ</button>
     </div>
   </div>
 </header>
 
-
-<div class="flex h-[calc(100vh-140px)]">
-  <!-- Sidebar Menu -->
-  <aside class="w-full sm:w-1/4 lg:w-1/5 bg-white border-r p-4 overflow-y-auto">
-    <div class="flex flex-col gap-4">
-      <!-- (เมนูเหมือนเดิม) -->
+<div class="flex flex-col sm:flex-row h-auto sm:h-[calc(100vh-140px)]">
+  <!-- Sidebar Menu: collapsible on mobile -->
+  <aside class="sm:w-1/4 lg:w-1/5 bg-white border-r p-2 sm:p-4 sm:block">
+    <!-- mobile toggle -->
+    <div class="sm:hidden mb-2">
+      <button onclick="toggleSidebar()" id="sidebarToggleBtn"
+        class="w-full flex items-center justify-between bg-blue-50 px-3 py-2 rounded-xl border shadow">
+        <span>เมนูระบบ</span>
+        <span id="sidebarIcon">▼</span>
+      </button>
+    </div>
+    <div id="sidebarMenu" class="flex-col gap-2 hidden sm:flex">
       <a onclick="comingSoon()" class="menu-item" style="background-color: #ffe0f0">📄 งานสารบรรณ</a>
       <a href="https://procurement-system.netlify.app/" target="_blank" class="menu-item" style="background-color: #e0ffe6">📦 งานพัสดุจัดซื้อจัดจ้าง</a>
       <a onclick="comingSoon()" class="menu-item" style="background-color: #e0f7ff">🗓️ งานประชุม</a>
@@ -86,13 +84,13 @@
   </aside>
 
   <!-- Content Area: ประกาศข่าว -->
-  <section class="flex-1 p-6 overflow-y-auto">
+  <section class="flex-1 p-3 sm:p-6 overflow-y-auto">
     <div class="mb-6">
-      <h2 class="text-xl font-bold mb-3 text-blue-800">📢 ประกาศข่าว</h2>
-      <form id="newsForm" class="flex flex-col sm:flex-row gap-2 items-start mb-4">
-        <input type="date" id="newsDate" class="border rounded px-2 py-1" required>
-        <input type="text" id="newsText" class="border rounded px-2 py-1 flex-1" placeholder="พิมพ์ข้อความประกาศ..." required>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700" id="newsSubmitBtn">เพิ่ม</button>
+      <h2 class="text-lg sm:text-xl font-bold mb-3 text-blue-800">📢 ประกาศข่าว</h2>
+      <form id="newsForm" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-start mb-4">
+        <input type="date" id="newsDate" class="border rounded px-2 py-2 sm:py-1 w-full sm:w-auto" required>
+        <input type="text" id="newsText" class="border rounded px-2 py-2 sm:py-1 flex-1" placeholder="พิมพ์ข้อความประกาศ..." required>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 w-full sm:w-auto" id="newsSubmitBtn">เพิ่ม</button>
       </form>
       <ul id="newsList" class="space-y-2"></ul>
     </div>
@@ -100,7 +98,7 @@
 </div>
 
 <footer class="bg-blue-900 text-white text-center py-4 mt-auto">
-  <div class="text-sm">© 2025 กองช่างสุขาภิบาล เทศบาลนครเกาะสมุย โดย นายธีรศักดิ์ พูลเขาล้าน</div>
+  <div class="text-xs sm:text-sm">© 2025 กองช่างสุขาภิบาล เทศบาลนครเกาะสมุย โดย นายธีรศักดิ์ พูลเขาล้าน</div>
 </footer>
 
 <!-- Coming Soon Modal -->
@@ -114,7 +112,29 @@
 </div>
 
 <script>
-  // ฟังก์ชัน Escape HTML
+  // Mobile Sidebar Toggle
+  function toggleSidebar() {
+    const menu = document.getElementById('sidebarMenu');
+    const icon = document.getElementById('sidebarIcon');
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden');
+      icon.textContent = "▲";
+    } else {
+      menu.classList.add('hidden');
+      icon.textContent = "▼";
+    }
+  }
+  // Responsive: always show on >=sm
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 640) {
+      document.getElementById('sidebarMenu').classList.remove('hidden');
+    } else {
+      document.getElementById('sidebarMenu').classList.add('hidden');
+      document.getElementById('sidebarIcon').textContent = "▼";
+    }
+  });
+
+  // Escape HTML ฟังก์ชัน
   function escapeHTML(str) {
     return String(str)
       .replace(/&/g, "&amp;")
@@ -183,9 +203,10 @@
       ul.innerHTML = `<li class="text-gray-500">ยังไม่มีประกาศ</li>`;
       return;
     }
+    // เรียงข่าวใหม่สุดขึ้นก่อน
     ul.innerHTML = news.slice().reverse().map(item => `
       <li class="bg-white p-4 rounded-xl shadow fade-in flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center">
-        <div>
+        <div class="break-words max-w-xs sm:max-w-lg">
           <span class="font-semibold text-blue-600">${escapeHTML(item.date)}:</span> ${escapeHTML(item.text)}
         </div>
         <div class="flex gap-2">
