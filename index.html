@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: 'Sarabun', sans-serif;
-            background-color: #f5f7fa; /* สีพื้นหลังที่นุ่มนวลและสว่างขึ้น */
+            background-color: #f5f7fa; 
         }
         .fade-in {
             animation: fadeIn 0.5s ease-in-out both;
@@ -24,22 +24,22 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* สไตล์สำหรับปุ่ม iOS-like ที่ปรับปรุงใหม่ */
+        /* สไตล์ปุ่ม iOS-like */
         .ios-button {
-            padding: 0.8rem 1.6rem; /* เพิ่ม padding เล็กน้อย */
-            border-radius: 9999px; /* ยังคงความกลม */
-            font-size: 1.05rem; /* ปรับขนาดตัวอักษรเล็กน้อย */
+            padding: 0.8rem 1.6rem;
+            border-radius: 9999px;
+            font-size: 1.05rem;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem; /* เพิ่มช่องว่างระหว่างไอคอนกับข้อความ */
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Cubic-bezier สำหรับ transition ที่นุ่มนวลขึ้น */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* เงาที่เบาและกระจายตัวมากขึ้น */
-            border: 1px solid rgba(0, 0, 0, 0.05); /* เพิ่มขอบบางๆ เพื่อความคมชัด */
+            gap: 0.6rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             cursor: pointer;
-            position: relative; /* สำหรับ pseudo-element */
-            overflow: hidden; /* ซ่อน overflow สำหรับ effect */
+            position: relative;
+            overflow: hidden;
         }
         .ios-button::before {
             content: '';
@@ -48,7 +48,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.1); /* Overlay สีขาวบางๆ */
+            background: rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
             transform: translateX(-100%);
         }
@@ -56,58 +56,40 @@
             transform: translateX(0);
         }
         .ios-button:hover {
-            transform: translateY(-3px); /* ยกขึ้นเล็กน้อยเมื่อ hover */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* เงาเข้มขึ้นเมื่อ hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
         }
         .ios-button:active {
-            transform: translateY(0); /* กลับสู่ตำแหน่งเดิมเมื่อกด */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* เงาจางลงเมื่อกด */
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        /* สไตล์สำหรับปุ่มหลักสีน้ำเงิน */
-        .ios-button-primary {
-            background: linear-gradient(145deg, #4c8bf5, #3b72e5); /* Gradient สีน้ำเงินที่สดใสขึ้น */
-            color: white;
-        }
-        /* สไตล์สำหรับปุ่มรองสีเทา */
-        .ios-button-secondary {
-            background: linear-gradient(145deg, #f0f2f5, #e0e2e5); /* Gradient สีเทาที่ดูสะอาดตา */
-            color: #4a5568;
-            border-color: rgba(0,0,0,0.08); /* เพิ่มขอบสีเทาอ่อน */
-        }
-        /* สไตล์สำหรับปุ่มเตือนสีเหลือง */
-        .ios-button-warning {
-            background: linear-gradient(145deg, #fcd34d, #fbbd23); /* Gradient สีเหลืองที่นุ่มนวลขึ้น */
-            color: #92400e;
-        }
-        /* สไตล์สำหรับปุ่มลบสีแดง */
-        .ios-button-danger {
-            background: linear-gradient(145deg, #ef4444, #dc2626); /* Gradient สีแดง */
-            color: white;
-        }
+        /* ปุ่มสีต่างๆ */
+        .ios-button-primary { background: linear-gradient(145deg, #4c8bf5, #3b72e5); color: white; }
+        .ios-button-secondary { background: linear-gradient(145deg, #f0f2f5, #e0e2e5); color: #4a5568; border-color: rgba(0,0,0,0.08); }
+        .ios-button-warning { background: linear-gradient(145deg, #fcd34d, #fbbd23); color: #92400e; }
+        .ios-button-danger { background: linear-gradient(145deg, #ef4444, #dc2626); color: white; }
 
-        /* ปรับสไตล์ menu-item ให้เข้ากับธีมใหม่ */
+        /* สไตล์ Menu Item */
         .menu-item {
-            padding: 1.1rem; /* เพิ่ม padding */
-            border-radius: 1.25rem; /* โค้งมนมากขึ้น */
-            font-size: 1.15rem; /* ขนาดตัวอักษรใหญ่ขึ้นเล็กน้อย */
+            padding: 1.1rem;
+            border-radius: 1.25rem;
+            font-size: 1.15rem;
             display: block;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06); /* เงาที่ดูนุ่มนวลขึ้น */
-            border: 1px solid rgba(0,0,0,0.03); /* ขอบที่บางลง */
-            font-weight: 500; /* เพิ่มความหนาของข้อความ */
-            color: #374151; /* สีข้อความเข้มขึ้นเล็กน้อย */
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0,0,0,0.03);
+            font-weight: 500;
+            color: #374151;
         }
         .menu-item:hover {
-            transform: translateY(-4px); /* ยกขึ้นเล็กน้อยเมื่อ hover */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* เงาเข้มขึ้นเมื่อ hover */
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             opacity: 1;
         }
-        .menu-item i {
-            margin-right: 0.75rem; /* เพิ่มช่องว่างระหว่างไอคอนกับข้อความ */
-        }
+        .menu-item i { margin-right: 0.75rem; }
 
-        /* ปรับสีพื้นหลังของ menu-item ให้สว่างขึ้นเล็กน้อย */
+        /* สีพื้นหลัง Menu Item */
         .bg-teal-100 { background-color: #e6fffa; }
         .bg-pink-100 { background-color: #ffe6f0; }
         .bg-green-100 { background-color: #e6ffe6; }
@@ -124,40 +106,32 @@
         .bg-lightgreen-100 { background-color: #f0ffe6; }
         .bg-peach-100 { background-color: #ffe6e6; }
         .bg-azure-100 { background-color: #e6faff; }
+        /* เพิ่มสีใหม่สำหรับปุ่มคุณภาพอากาศ */
+        .bg-sky-100 { background-color: #e0f2fe; }
 
-        /* ปรับสไตล์ input fields */
-        input[type="date"],
-        input[type="text"] {
+        /* Form Elements */
+        input[type="date"], input[type="text"] {
             padding: 0.75rem 1rem;
-            border-radius: 0.75rem; /* โค้งมนมากขึ้น */
-            border: 1px solid #cbd5e0; /* สีขอบที่นุ่มนวลขึ้น */
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* เงาด้านในเล็กน้อย */
+            border-radius: 0.75rem;
+            border: 1px solid #cbd5e0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        input[type="date"]:focus,
-        input[type="text"]:focus {
-            border-color: #63b3ed; /* สีขอบเมื่อ focus */
-            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.3); /* Ring shadow เมื่อ focus */
+        input[type="date"]:focus, input[type="text"]:focus {
+            border-color: #63b3ed;
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.3);
             outline: none;
         }
 
-        /* ปรับสไตล์ header และ footer */
-        header {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); }
 
-        /* ปรับ modal content */
         #modalContent {
             background-color: #ffffff;
-            border-radius: 2rem; /* โค้งมนมากขึ้น */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* เงาที่ลึกขึ้น */
+            border-radius: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
-        #modalContent .animate-bounce {
-            animation: bounce 1s infinite;
-        }
+        #modalContent .animate-bounce { animation: bounce 1s infinite; }
         @keyframes bounce {
             0%, 100% { transform: translateY(-10%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
             50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
@@ -177,7 +151,6 @@
         </div>
         <div class="text-sm text-right mt-4 sm:mt-0">
             <span id="currentDate" class="block mb-2 font-light"></span>
-            <!-- ใช้คลาส ios-button-secondary สำหรับปุ่มออกจากระบบ -->
             <button onclick="logout()" class="ios-button ios-button-secondary">
                 <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
             </button>
@@ -186,10 +159,8 @@
 </header>
 
 <div class="flex flex-1 flex-col sm:flex-row">
-    <!-- Sidebar Menu -->
     <aside class="w-full sm:w-1/4 lg:w-1/5 bg-white border-r border-gray-100 p-4 overflow-y-auto shadow-xl">
         <div class="flex flex-col gap-4">
-            <!-- ปรับสีพื้นหลังของ menu-item ให้ใช้ Tailwind classes ที่กำหนดใหม่ -->
             <a href="https://utilities-information.netlify.app/" target="_blank" class="menu-item bg-teal-100"><i class="fas fa-chart-line"></i> ระบบรายงานสาธารณูปโภค</a>
             <a href="https://documenttracking.netlify.app/" target="_blank"  class="menu-item"  style="background-color: #ffe0f0;"> 📄 งานสารบรรณ</a>
             <a href="https://procurement-system.netlify.app/" target="_blank" class="menu-item bg-green-100"><i class="fas fa-box-open"></i> งานพัสดุจัดซื้อจัดจ้าง</a>
@@ -205,6 +176,7 @@
             <a href="https://workassign.netlify.app/" target="_blank" class="menu-item bg-khaki-100"><i class="fas fa-chart-bar"></i> รายงานผล</a>
             <a href="https://script.google.com/macros/s/AKfycbz72aLIWtxS1vIAcvcxL86ukegVFEQVZduCQnc5-RInAHJm63z3luKuVR91m7ewOFGa/exec" target="_blank" class="menu-item bg-lightgreen-100"><i class="fas fa-recycle"></i> รายงานปริมาณขยะ</a>
             <a href="https://fixcarsamui.netlify.app/" target="_blank" class="menu-item bg-peach-100"><i class="fas fa-tools"></i> ระบบซ่อมบำรุง</a>
+            <a href="https://iot.smartway.co.th/index.php" target="_blank" class="menu-item bg-sky-100"><i class="fas fa-wind"></i> คุณภาพอากาศ</a>
             <a href="https://app.smartway.co.th/login.php" target="_blank" class="menu-item bg-azure-100"><i class="fas fa-car"></i> ระบบติดตามรถ</a>
         </div>
     </aside>
@@ -215,7 +187,6 @@
             <form id="newsForm" class="flex flex-col sm:flex-row gap-4 items-start mb-6">
                 <input type="date" id="newsDate" class="flex-shrink-0" required>
                 <input type="text" id="newsText" class="flex-1" placeholder="พิมพ์ข้อความประกาศ..." required>
-                <!-- ใช้คลาส ios-button-primary สำหรับปุ่มเพิ่ม/บันทึก -->
                 <button type="submit" class="ios-button ios-button-primary" id="newsSubmitBtn">
                     <i class="fas fa-plus-circle"></i> เพิ่ม
                 </button>
@@ -234,13 +205,11 @@
         <div class="text-5xl mb-4 animate-bounce">⏳</div>
         <h2 class="text-2xl font-semibold mb-3 text-gray-800">อดใจรอหน่อยนะ</h2>
         <p class="text-md mb-6 text-gray-600">ระบบนี้อยู่ระหว่างดำเนินการ</p>
-        <!-- ใช้คลาส ios-button-primary สำหรับปุ่มปิดใน modal -->
         <button onclick="hideComingSoon()" class="ios-button ios-button-primary">ปิด</button>
     </div>
 </div>
 
 <script>
-    // ฟังก์ชัน Escape HTML
     function escapeHTML(str) {
         return String(str)
             .replace(/&/g, "&amp;")
@@ -250,7 +219,6 @@
             .replace(/"/g, "&quot;");
     }
 
-    // ใส่วันที่วันนี้อัตโนมัติ (ฟังก์ชัน)
     function getTodayDate() {
         const d = new Date();
         const month = (d.getMonth() + 1).toString().padStart(2, '0');
@@ -258,93 +226,75 @@
         return `${d.getFullYear()}-${month}-${day}`;
     }
 
-    // แสดงวันที่ปัจจุบันที่ส่วนหัว
     document.getElementById('currentDate').textContent = new Date().toLocaleDateString('th-TH', {
         year: 'numeric', month: 'long', day: 'numeric'
     });
 
-    // ฟังก์ชันออกจากระบบ (ปัจจุบันแค่รีโหลดหน้า)
     function logout() {
-        // ในระบบจริง อาจมีการลบ token หรือ session
-        localStorage.removeItem('loggedIn'); // ตัวอย่างการลบสถานะ login
+        localStorage.removeItem('loggedIn');
         location.reload();
     }
 
-    // แสดง Modal "Coming Soon"
     function comingSoon() {
         const modal = document.getElementById('comingSoonModal');
         const modalContent = document.getElementById('modalContent');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-        // เพิ่ม animation เมื่อ modal แสดง
         setTimeout(() => {
             modalContent.classList.remove('scale-95', 'opacity-0');
             modalContent.classList.add('scale-100', 'opacity-100');
         }, 10);
     }
 
-    // ซ่อน Modal "Coming Soon"
     function hideComingSoon() {
         const modal = document.getElementById('comingSoonModal');
         const modalContent = document.getElementById('modalContent');
-        // เพิ่ม animation เมื่อ modal ซ่อน
         modalContent.classList.remove('scale-100', 'opacity-100');
         modalContent.classList.add('scale-95', 'opacity-0');
         setTimeout(() => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-        }, 300); // รอให้ animation จบก่อนซ่อน
+        }, 300);
     }
 
-    // =========================
-    // ระบบข่าว เชื่อม Google Sheets
-    // =========================
-    // URL ของ Google Apps Script API สำหรับจัดการข่าว
     const API_URL = "https://script.google.com/macros/s/AKfycbyUBo00IJyYOd8jNiL-IMnYU6nB-4zvRHoPNBz4aRVNAILG8BM6v-8N4N9ck7hELAhuyg/exec";
-    let editingId = null; // ตัวแปรสำหรับเก็บ ID ของข่าวที่กำลังแก้ไข
+    let editingId = null;
 
-    // ใส่ค่าวันที่ปัจจุบันอัตโนมัติเมื่อโหลดหน้า
     if (document.getElementById('newsDate')) {
         document.getElementById('newsDate').value = getTodayDate();
     }
 
-    // ฟังก์ชันสำหรับดึงข่าวจาก Google Sheets
     async function fetchNews() {
         try {
             const res = await fetch(`${API_URL}?action=getNews`);
             const data = await res.json();
-            return data.news || []; // คืนค่า array ของข่าว หรือ array ว่างถ้าไม่มี
+            return data.news || [];
         } catch (e) {
-            // แสดงข้อความผิดพลาดหากดึงข้อมูลไม่ได้
             document.getElementById('newsList').innerHTML = `<li class="text-red-500 p-4 bg-red-50 rounded-xl shadow-sm">เกิดข้อผิดพลาดในการโหลดข่าว: ${e.message}</li>`;
             console.error("Error fetching news:", e);
             return [];
         }
     }
 
-    // ฟังก์ชันสำหรับแสดงข่าวบนหน้าเว็บ
     async function renderNews() {
         const ul = document.getElementById('newsList');
-        ul.innerHTML = `<li class="text-gray-500 p-4 bg-gray-50 rounded-xl shadow-sm">กำลังโหลด...</li>`; // แสดงสถานะกำลังโหลด
-        const news = await fetchNews(); // ดึงข่าว
+        ul.innerHTML = `<li class="text-gray-500 p-4 bg-gray-50 rounded-xl shadow-sm">กำลังโหลด...</li>`;
+        const news = await fetchNews();
 
         if (!news.length) {
-            ul.innerHTML = `<li class="text-gray-500 p-4 bg-gray-50 rounded-xl shadow-sm">ยังไม่มีประกาศ</li>`; // แสดงเมื่อไม่มีข่าว
+            ul.innerHTML = `<li class="text-gray-500 p-4 bg-gray-50 rounded-xl shadow-sm">ยังไม่มีประกาศ</li>`;
             return;
         }
 
-        // เรียงข่าวจากใหม่ไปเก่าและสร้าง HTML สำหรับแต่ละรายการ
         ul.innerHTML = news.slice().reverse().map(item => `
             <li class="bg-white p-4 rounded-xl shadow-md fade-in flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center border border-gray-100">
                 <div class="flex-1">
                     <span class="font-semibold text-blue-700">${escapeHTML(item.date)}:</span> ${escapeHTML(item.text)}
                 </div>
                 <div class="flex gap-2 mt-2 sm:mt-0">
-                    <!-- ใช้คลาส ios-button-warning สำหรับปุ่มแก้ไข -->
                     <button onclick="startEditNews('${escapeHTML(item.id)}', '${escapeHTML(item.date)}', '${escapeHTML(item.text)}')" class="ios-button ios-button-warning text-sm">
                         <i class="fas fa-edit"></i> แก้ไข
                     </button>
-                    <!-- ใช้คลาส ios-button-danger สำหรับปุ่มลบ -->
                     <button onclick="deleteNews('${escapeHTML(item.id)}')" class="ios-button ios-button-danger text-sm">
                         <i class="fas fa-trash-alt"></i> ลบ
                     </button>
@@ -353,9 +303,8 @@
         `).join('');
     }
 
-    // ฟังก์ชันสำหรับเพิ่มหรือแก้ไขข่าว
     async function addNews(e) {
-        e.preventDefault(); // ป้องกันการ submit ฟอร์มแบบปกติ
+        e.preventDefault();
         const date = document.getElementById('newsDate').value;
         const text = document.getElementById('newsText').value.trim();
         if (!date || !text) {
@@ -364,10 +313,9 @@
         }
 
         let url = `${API_URL}?action=addNews&date=${encodeURIComponent(date)}&text=${encodeURIComponent(text)}`;
-        let method = 'GET'; // Google Apps Script มักใช้ GET สำหรับการดำเนินการแบบง่าย
+        let method = 'GET';
 
         if (editingId) {
-            // ถ้ามี editingId แสดงว่าเป็นการแก้ไข
             url = `${API_URL}?action=editNews&id=${encodeURIComponent(editingId)}&date=${encodeURIComponent(date)}&text=${encodeURIComponent(text)}`;
         }
 
@@ -384,16 +332,13 @@
             console.error("Error adding/editing news:", error);
         }
 
-
-        // รีเซ็ตฟอร์มและสถานะการแก้ไข
         document.getElementById('newsForm').reset();
-        document.getElementById('newsDate').value = getTodayDate(); // ตั้งค่าวันที่เป็นปัจจุบัน
-        editingId = null; // ล้าง ID ที่กำลังแก้ไข
-        document.getElementById('newsSubmitBtn').innerHTML = '<i class="fas fa-plus-circle"></i> เพิ่ม'; // เปลี่ยนข้อความปุ่มกลับเป็น "เพิ่ม"
-        renderNews(); // โหลดข่าวใหม่
+        document.getElementById('newsDate').value = getTodayDate();
+        editingId = null;
+        document.getElementById('newsSubmitBtn').innerHTML = '<i class="fas fa-plus-circle"></i> เพิ่ม';
+        renderNews();
     }
 
-    // ฟังก์ชันสำหรับลบข่าว
     async function deleteNews(id) {
         Swal.fire({
             title: 'ยืนยันการลบ',
@@ -411,7 +356,7 @@
                     const result = await resp.json();
                     if (result.success) {
                         Swal.fire('ลบสำเร็จ!', result.message || 'ประกาศถูกลบเรียบร้อยแล้ว', 'success');
-                        renderNews(); // โหลดข่าวใหม่หลังลบ
+                        renderNews();
                     } else {
                         Swal.fire('เกิดข้อผิดพลาด!', result.message || 'ไม่สามารถลบประกาศได้', 'error');
                     }
@@ -423,22 +368,18 @@
         });
     }
 
-    // ฟังก์ชันสำหรับเริ่มแก้ไขข่าว (เติมข้อมูลลงในฟอร์ม)
     function startEditNews(id, date, text) {
         document.getElementById('newsDate').value = date;
         document.getElementById('newsText').value = text;
-        editingId = id; // ตั้งค่า ID ที่กำลังแก้ไข
-        document.getElementById('newsSubmitBtn').innerHTML = '<i class="fas fa-save"></i> บันทึก'; // เปลี่ยนข้อความปุ่มเป็น "บันทึก"
-        document.getElementById('newsText').focus(); // โฟกัสที่ช่องข้อความ
+        editingId = id;
+        document.getElementById('newsSubmitBtn').innerHTML = '<i class="fas fa-save"></i> บันทึก';
+        document.getElementById('newsText').focus();
     }
 
-    // กำหนด event listener สำหรับฟอร์ม
     document.getElementById('newsForm').onsubmit = addNews;
-    // ทำให้ฟังก์ชันเหล่านี้สามารถเรียกใช้ได้จาก HTML (global scope)
     window.startEditNews = startEditNews;
     window.deleteNews = deleteNews;
 
-    // โหลดข่าวเมื่อเปิดหน้าครั้งแรก
     renderNews();
 </script>
 
