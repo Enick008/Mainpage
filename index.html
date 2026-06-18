@@ -160,12 +160,12 @@
             animation: cat-bounce 0.4s alternate infinite cubic-bezier(0.4, 0, 0.2, 1);
             filter: drop-shadow(3px 5px 5px rgba(0,0,0,0.25));
         }
-        @keyframes walk-across {
-            0% { transform: translateX(-150px) scaleX(1); }
-            49% { transform: translateX(calc(100vw + 150px)) scaleX(1); }
-            50% { transform: translateX(calc(100vw + 150px)) scaleX(-1); } /* กลับหลังหัน */
-            99% { transform: translateX(-150px) scaleX(-1); }
-            100% { transform: translateX(-150px) scaleX(1); }
+@keyframes walk-across {
+            0% { transform: translateX(-150px) scaleX(-1); } /* หันขวา แล้วเดินไปขวา */
+            49% { transform: translateX(calc(100vw + 150px)) scaleX(-1); }
+            50% { transform: translateX(calc(100vw + 150px)) scaleX(1); } /* กลับหลังหันมาทางซ้าย */
+            99% { transform: translateX(-150px) scaleX(1); } /* เดินกลับมาซ้าย */
+            100% { transform: translateX(-150px) scaleX(-1); } /* หันขวาเตรียมเริ่มรอบใหม่ */
         }
         @keyframes cat-bounce {
             from { transform: translateY(0); }
