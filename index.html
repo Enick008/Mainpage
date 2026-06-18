@@ -16,6 +16,7 @@
         body {
             font-family: 'Sarabun', sans-serif;
             background-color: #f5f7fa; 
+            overflow-x: hidden; /* ป้องกันแถบเลื่อนแนวนอนเวลาน้องแมวเดินออกนอกจอ */
         }
         .fade-in {
             animation: fadeIn 0.5s ease-in-out both;
@@ -106,7 +107,6 @@
         .bg-lightgreen-100 { background-color: #f0ffe6; }
         .bg-peach-100 { background-color: #ffe6e6; }
         .bg-azure-100 { background-color: #e6faff; }
-        /* เพิ่มสีใหม่สำหรับปุ่มคุณภาพอากาศ */
         .bg-sky-100 { background-color: #e0f2fe; }
 
         /* Form Elements */
@@ -136,6 +136,41 @@
             0%, 100% { transform: translateY(-10%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
             50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
         }
+
+        /* 🐈 แอนิเมชันน้องแมวส้ม 🐈 */
+        .walking-cat-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 0;
+            z-index: 9999;
+            cursor: pointer;
+            animation: walk-across 35s linear infinite;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .walking-cat-container:hover {
+            animation-play-state: paused;
+            transform: scale(1.2); /* ขยายร่างนิดนึงตอนเอาเมาส์ชี้ */
+        }
+        .walking-cat-container:hover .walking-cat {
+            animation-play-state: paused;
+        }
+        .walking-cat {
+            font-size: 3.5rem;
+            display: inline-block;
+            animation: cat-bounce 0.4s alternate infinite cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(3px 5px 5px rgba(0,0,0,0.25));
+        }
+        @keyframes walk-across {
+            0% { transform: translateX(-150px) scaleX(1); }
+            49% { transform: translateX(calc(100vw + 150px)) scaleX(1); }
+            50% { transform: translateX(calc(100vw + 150px)) scaleX(-1); } /* กลับหลังหัน */
+            99% { transform: translateX(-150px) scaleX(-1); }
+            100% { transform: translateX(-150px) scaleX(1); }
+        }
+        @keyframes cat-bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-12px); } /* จังหวะก้าวขา */
+        }
     </style>
 </head>
 <body class="text-gray-800 flex flex-col min-h-screen">
@@ -159,7 +194,7 @@
 </header>
 
 <div class="flex flex-1 flex-col sm:flex-row">
-    <aside class="w-full sm:w-1/4 lg:w-1/5 bg-white border-r border-gray-100 p-4 overflow-y-auto shadow-xl">
+    <aside class="w-full sm:w-1/4 lg:w-1/5 bg-white border-r border-gray-100 p-4 overflow-y-auto shadow-xl z-10">
         <div class="flex flex-col gap-4">
             <a href="https://utilities-information.netlify.app/" target="_blank" class="menu-item bg-teal-100"><i class="fas fa-chart-line"></i> ระบบรายงานสาธารณูปโภค</a>
             <a href="https://documenttracking.netlify.app/" target="_blank"  class="menu-item"  style="background-color: #ffe0f0;"> 📄 งานสารบรรณ</a>
@@ -182,7 +217,7 @@
         </div>
     </aside>
 
-    <section class="flex-1 p-6 overflow-y-auto">
+    <section class="flex-1 p-6 overflow-y-auto relative z-10">
         <div class="mb-6 bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <h2 class="text-2xl font-bold mb-5 text-blue-800">📢 ประกาศข่าว</h2>
             <form id="newsForm" class="flex flex-col sm:flex-row gap-4 items-start mb-6">
@@ -197,7 +232,12 @@
     </section>
 </div>
 
-<footer class="bg-blue-900 text-white text-center py-4 mt-auto shadow-inner">
+<!-- น้องแมวส้ม -->
+<div class="walking-cat-container" onclick="meow()" title="จิ้มพุงส้มหน่อยฮะ">
+    <div class="walking-cat">🐈</div>
+</div>
+
+<footer class="bg-blue-900 text-white text-center py-4 mt-auto shadow-inner relative z-20">
     <div class="text-sm opacity-90">© 2025 กองช่างสุขาภิบาล เทศบาลนครเกาะสมุย โดย นายธีรศักดิ์ พูลเขาล้าน</div>
 </footer>
 
@@ -256,6 +296,17 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }, 300);
+    }
+
+    // ฟังก์ชันเสียงร้องแมว
+    function meow() {
+        Swal.fire({
+            title: 'เหมียววว~ 🐾',
+            text: 'รับปลาทูเพิ่มไหมฮะ เจ้านาย?',
+            icon: 'info',
+            confirmButtonText: 'ลูบหัว 1 ที',
+            confirmButtonColor: '#f59e0b'
+        });
     }
 
     const API_URL = "https://script.google.com/macros/s/AKfycbyUBo00IJyYOd8jNiL-IMnYU6nB-4zvRHoPNBz4aRVNAILG8BM6v-8N4N9ck7hELAhuyg/exec";
