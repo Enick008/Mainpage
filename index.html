@@ -87,6 +87,8 @@
             border: 1px solid rgba(0,0,0,0.03);
             font-weight: 500;
             color: #374151;
+            text-decoration: none;
+            cursor: pointer;
         }
         .menu-item:hover {
             transform: translateY(-4px);
@@ -232,20 +234,20 @@
     <div class="flex flex-1 flex-col sm:flex-row">
         <aside class="w-full sm:w-1/4 lg:w-1/5 bg-white border-r border-gray-100 p-4 overflow-y-auto shadow-xl z-10">
             <div class="flex flex-col gap-4">
-                <!-- เมนูภายในที่ใส่ระบบความปลอดภัย Token ชั่วคราว -->
-                <a href="https://utilities-information.netlify.app/" class="menu-item bg-teal-100 protected-link"><i class="fas fa-chart-line"></i> ระบบรายงานสาธารณูปโภค</a>
-                <a href="https://documenttracking.netlify.app/" class="menu-item protected-link" style="background-color: #ffe0f0;"> 📄 งานสารบรรณ</a>
-                <a href="https://script.google.com/macros/s/AKfycbwSBBtS6QVE1aLsyKuoVFXE7SJ2xpfcWS23HEe-d_d7GnG-DctZOUDo03XAUWtMXb6E/exec" class="menu-item bg-lime-100 protected-link"><i class="fas fa-trash-alt"></i> ติดตามโครงการขยะใหม่ 68-70 </a>
-                <a href="https://script.google.com/macros/s/AKfycbyF1D7sLjo3nE9zKUYqng1lKtuBhvWqRFT_er0v-mPZuBUCmX2GlxYTkEiUIJXaGZxR/exec" class="menu-item bg-orange-100 protected-link"><i class="fas fa-history"></i> ติดตามโครงการขยะเก่า 68-70</a>
-                <a onclick="comingSoon()" class="menu-item bg-orange-100 cursor-pointer"><i class="fas fa-wrench"></i> คำร้องขอเชื่อมท่อ</a>
-                <a href="https://sanitaryservice.netlify.app/" class="menu-item bg-amber-100 protected-link"><i class="fas fa-truck-moving"></i> บริการดูดสิ่งปฏิกูล</a>
-                <a href="https://script.google.com/macros/s/AKfycbzg9T_cNE5Sres5Esn4xVfgUehhzWJy0Hp581sWBfLmtrQ_EJjTl-nd_fFYCcRuEQ5S/exec" class="menu-item bg-purple-100 protected-link"><i class="fas fa-toilet"></i> รถสุขาเคลื่อนที่</a>
+                <!-- เมนูภายในที่เชื่อมโยงระบบขอ Token ชั่วคราวอัตโนมัติผ่านฟังก์ชัน openSubpage -->
+                <a onclick="openSubpage('https://utilities-information.netlify.app/')" class="menu-item bg-teal-100"><i class="fas fa-chart-line"></i> ระบบรายงานสาธารณูปโภค</a>
+                <a onclick="openSubpage('https://documenttracking.netlify.app/')" class="menu-item" style="background-color: #ffe0f0;"><i class="fas fa-file-alt"></i> งานสารบรรณ</a>
+                <a onclick="openSubpage('https://script.google.com/macros/s/AKfycbwSBBtS6QVE1aLsyKuoVFXE7SJ2xpfcWS23HEe-d_d7GnG-DctZOUDo03XAUWtMXb6E/exec')" class="menu-item bg-lime-100"><i class="fas fa-trash-alt"></i> ติดตามโครงการขยะใหม่ 68-70</a>
+                <a onclick="openSubpage('https://script.google.com/macros/s/AKfycbyF1D7sLjo3nE9zKUYqng1lKtuBhvWqRFT_er0v-mPZuBUCmX2GlxYTkEiUIJXaGZxR/exec')" class="menu-item bg-orange-100"><i class="fas fa-history"></i> ติดตามโครงการขยะเก่า 68-70</a>
+                <a onclick="comingSoon()" class="menu-item bg-orange-100"><i class="fas fa-wrench"></i> คำร้องขอเชื่อมท่อ</a>
+                <a onclick="openSubpage('https://sanitaryservice.netlify.app/')" class="menu-item bg-amber-100"><i class="fas fa-truck-moving"></i> บริการดูดสิ่งปฏิกูล</a>
+                <a onclick="openSubpage('https://script.google.com/macros/s/AKfycbzg9T_cNE5Sres5Esn4xVfgUehhzWJy0Hp581sWBfLmtrQ_EJjTl-nd_fFYCcRuEQ5S/exec')" class="menu-item bg-purple-100"><i class="fas fa-toilet"></i> รถสุขาเคลื่อนที่</a>
                 <a href="https://samuisanitary.my.canva.site/dagnayggh8g" target="_blank" class="menu-item bg-indigo-100"><i class="fas fa-road"></i> แจ้งซ่อมฝาท่อ</a>
-                <a href="https://complainsystemfull.netlify.app/" class="menu-item bg-yellow-100 protected-link"><i class="fas fa-bullhorn"></i> แจ้งเรื่องร้องเรียน</a>
-                <a href="https://samuiproject.netlify.app/" class="menu-item bg-emerald-100 protected-link"><i class="fas fa-cloud-upload-alt"></i> อัพโหลด/ดาวน์โหลดเอกสาร</a>
-                <a href="https://script.google.com/macros/s/AKfycbz72aLIWtxS1vIAcvcxL86ukegVFEQVZduCQnc5-RInAHJm63z3luKuVR91m7ewOFGa/exec" class="menu-item bg-lightgreen-100 protected-link"><i class="fas fa-recycle"></i> รายงานปริมาณขยะ</a>
-                <a href="https://fixcarsamui.netlify.app/" class="menu-item bg-peach-100 protected-link"><i class="fas fa-tools"></i> ระบบซ่อมบำรุง</a>
-                <a href="https://script.google.com/macros/s/AKfycbxf_PAFyx3DzjZa_75foNJI5GceyQvgVuVMW0T5nqZZEuNDpYKI4wckBpdndX5779EidQ/exec" class="menu-item bg-blue-100 protected-link"><i class="fas fa-car-side"></i> ข้อมูลรถส่วนกลาง</a>
+                <a onclick="openSubpage('https://complainsystemfull.netlify.app/')" class="menu-item bg-yellow-100"><i class="fas fa-bullhorn"></i> แจ้งเรื่องร้องเรียน</a>
+                <a onclick="openSubpage('https://samuiproject.netlify.app/')" class="menu-item bg-emerald-100"><i class="fas fa-cloud-upload-alt"></i> อัพโหลด/ดาวน์โหลดเอกสาร</a>
+                <a onclick="openSubpage('https://script.google.com/macros/s/AKfycbz72aLIWtxS1vIAcvcxL86ukegVFEQVZduCQnc5-RInAHJm63z3luKuVR91m7ewOFGa/exec')" class="menu-item bg-lightgreen-100"><i class="fas fa-recycle"></i> รายงานปริมาณขยะ</a>
+                <a onclick="openSubpage('https://fixcarsamui.netlify.app/')" class="menu-item bg-peach-100"><i class="fas fa-tools"></i> ระบบซ่อมบำรุง</a>
+                <a onclick="openSubpage('https://script.google.com/macros/s/AKfycbxf_PAFyx3DzjZa_75foNJI5GceyQvgVuVMW0T5nqZZEuNDpYKI4wckBpdndX5779EidQ/exec')" class="menu-item bg-blue-100"><i class="fas fa-car-side"></i> ข้อมูลรถส่วนกลาง</a>
 
                 <!-- เมนูภายนอกเดิม -->
                 <a href="https://iot.smartway.co.th/samui_pole/index.php" target="_blank" class="menu-item bg-sky-100"><i class="fas fa-wind"></i> คุณภาพอากาศ</a>
@@ -291,47 +293,47 @@
 
 <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyUBo00IJyYOd8jNiL-IMnYU6nB-4zvRHoPNBz4aRVNAILG8BM6v-8N4N9ck7hELAhuyg/exec";
+    
+    // URL ของ Google Apps Script ตัวกลางสำหรับออก Token (ที่เอ็นส่งมาใหม่ล่าสุด)
+    const AUTH_API_URL = "https://script.google.com/macros/s/AKfycbzeNSICmNXcmCVySMRsenZCOOkVHY-K3CnVsk1QAqr7N2bQPjEI8CumFcYa-wwYiLld/exec";
+
     let editingId = null;
 
     // ==========================================
-    // 🎫 ระบบสร้าง Token ชั่วคراวก่อนเปิดเว็บย่อย
+    // 🎫 ฟังก์ชันกลางสำหรับขอ Token และเปิดเว็บย่อยอัตโนมัติ
     // ==========================================
-    document.querySelectorAll('.protected-link').forEach(link => {
-        link.addEventListener('click', async function(e) {
-            e.preventDefault();
-            const targetUrl = this.getAttribute('href');
-            const loggedUser = localStorage.getItem('sanitary_logged_user');
+    async function openSubpage(targetUrl) {
+        const loggedUser = localStorage.getItem('sanitary_logged_user');
 
-            if (!loggedUser) {
-                checkAuth();
-                return;
-            }
+        if (!loggedUser) {
+            checkAuth();
+            return;
+        }
 
-            Swal.fire({
-                title: 'กำลังยืนยันสิทธิ์เข้าใช้งาน...',
-                text: 'กรุณารอสักครู่',
-                allowOutsideClick: false,
-                didOpen: () => { Swal.showLoading(); }
-            });
-
-            try {
-                const resp = await fetch(`${API_URL}?action=getToken&user=${encodeURIComponent(loggedUser)}`);
-                const result = await resp.json();
-                Swal.close();
-
-                if (result.success && result.token) {
-                    const separator = targetUrl.includes('?') ? '&' : '?';
-                    const secureUrl = `${targetUrl}${separator}token=${encodeURIComponent(result.token)}`;
-                    window.open(secureUrl, '_blank');
-                } else {
-                    Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถสร้างรหัสผ่านชั่วคราวได้', 'error');
-                }
-            } catch (err) {
-                Swal.close();
-                Swal.fire('การเชื่อมต่อขัดข้อง', 'ไม่สามารถติดต่อเซิร์ฟเวอร์ได้', 'error');
-            }
+        Swal.fire({
+            title: 'กำลังยืนยันสิทธิ์เข้าใช้งาน...',
+            text: 'กรุณารอสักครู่',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading(); }
         });
-    });
+
+        try {
+            const resp = await fetch(`${AUTH_API_URL}?action=generateToken&user=${encodeURIComponent(loggedUser)}`);
+            const result = await resp.json();
+            Swal.close();
+
+            if (result.success && result.token) {
+                const separator = targetUrl.includes('?') ? '&' : '?';
+                const secureUrl = `${targetUrl}${separator}token=${encodeURIComponent(result.token)}`;
+                window.open(secureUrl, '_blank');
+            } else {
+                Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถสร้างรหัสผ่านชั่วคราวได้', 'error');
+            }
+        } catch (err) {
+            Swal.close();
+            Swal.fire('การเชื่อมต่อขัดข้อง', 'ไม่สามารถติดต่อเซิร์ฟเวอร์ได้', 'error');
+        }
+    }
 
     // ==========================================
     // ⏱️ ระบบตั้งเวลาหมดอายุอัตโนมัติ (20 นาที)
@@ -366,7 +368,6 @@
         });
     }
 
-    // ตรวจสอบเวลาเมื่อเปิดหน้าเว็บว่าเกิน 20 นาทีตอนปิดแท็บไปหรือยัง
     function checkSessionExpiry() {
         const lastActive = localStorage.getItem('sanitary_last_active');
         const loggedUser = localStorage.getItem('sanitary_logged_user');
@@ -381,7 +382,6 @@
         return true;
     }
 
-    // ดักจับกิจกรรมการเคลื่อนไหวของผู้ใช้
     ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
         window.addEventListener(event, resetInactivityTimer);
     });
@@ -401,7 +401,7 @@
             mainDashboard.classList.remove('hidden');
             mainDashboard.classList.add('flex');
             document.getElementById('welcomeUser').textContent = `ผู้ใช้งาน: ${loggedUser}`;
-            resetInactivityTimer(); // เริ่มนับเวลาถอยหลัง
+            resetInactivityTimer();
             renderNews();
         } else {
             loginOverlay.classList.remove('hidden');
