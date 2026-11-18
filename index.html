@@ -168,7 +168,7 @@
             0% { transform: translateX(-150px) scaleX(-1); }
             49% { transform: translateX(calc(100vw + 150px)) scaleX(-1); }
             50% { transform: translateX(calc(100vw + 150px)) scaleX(1); }
-            99% { transform: translateX(-150px) scaleX(1); }
+            99% { transform: translateX(-150px) scaleX(-1); }
             100% { transform: translateX(-150px) scaleX(-1); }
         }
         @keyframes cat-bounce {
@@ -290,7 +290,65 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyUBo00IJyYOd8jNiL-IMnYU6nB-4zvRHoPNBz4aRVNAILG8BM6v-8N4N9ck7hELAhuyg/exec";
     let editingId = null;
 
+    // ==========================================
+    // ⏱️ ระบบตั้งเวลาหมดอายุอัตโนมัติ (20 นาที)
+    // ==========================================
+    const TIMEOUT_DURATION = 20 * 60 * 1000; // 20 นาทีในหน่วยมิลลิวินาที
+    let inactivityTimer;
+
+    function resetInactivityTimer() {
+        if (!localStorage.getItem('sanitary_logged_user')) return;
+        
+        clearTimeout(inactivityTimer);
+        localStorage.setItem('sanitary_last_active', Date.now());
+
+        inactivityTimer = setTimeout(() => {
+            handleSessionTimeout();
+        }, TIMEOUT_DURATION);
+    }
+
+    function handleSessionTimeout() {
+        localStorage.removeItem('sanitary_logged_user');
+        localStorage.removeItem('sanitary_last_active');
+        
+        Swal.fire({
+            title: 'หมดเวลาการใช้งาน',
+            text: 'เนื่องจากไม่มีการใช้งานระบบเกิน 20 นาที กรุณาเข้าสู่ระบบใหม่อีกครั้ง',
+            icon: 'warning',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#3b72e5',
+            allowOutsideClick: false
+        }).then(() => {
+            location.reload();
+        });
+    }
+
+    // ตรวจสอบเวลาเมื่อเปิดหน้าเว็บว่าเกิน 20 นาทีตอนปิดแท็บไปหรือยัง
+    function checkSessionExpiry() {
+        const lastActive = localStorage.getItem('sanitary_last_active');
+        const loggedUser = localStorage.getItem('sanitary_logged_user');
+
+        if (loggedUser && lastActive) {
+            const elapsed = Date.now() - parseInt(lastActive, 10);
+            if (elapsed > TIMEOUT_DURATION) {
+                handleSessionTimeout();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // ดักจับกิจกรรมการเคลื่อนไหวของผู้ใช้
+    ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
+        window.addEventListener(event, resetInactivityTimer);
+    });
+
+    // ==========================================
+    // 🔐 ระบบตรวจสอบสิทธิ์
+    // ==========================================
     function checkAuth() {
+        if (!checkSessionExpiry()) return;
+
         const loggedUser = localStorage.getItem('sanitary_logged_user');
         const loginOverlay = document.getElementById('loginOverlay');
         const mainDashboard = document.getElementById('mainDashboard');
@@ -300,6 +358,7 @@
             mainDashboard.classList.remove('hidden');
             mainDashboard.classList.add('flex');
             document.getElementById('welcomeUser').textContent = `ผู้ใช้งาน: ${loggedUser}`;
+            resetInactivityTimer(); // เริ่มนับเวลาถอยหลัง
             renderNews();
         } else {
             loginOverlay.classList.remove('hidden');
@@ -324,6 +383,7 @@
 
             if (result.success) {
                 localStorage.setItem('sanitary_logged_user', result.displayName);
+                localStorage.setItem('sanitary_last_active', Date.now());
                 Swal.fire({
                     title: 'เข้าสู่ระบบสำเร็จ',
                     text: `ยินดีต้อนรับ ${result.displayName}`,
@@ -370,12 +430,15 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 localStorage.removeItem('sanitary_logged_user');
-                localStorage.removeItem('loggedIn');
+                localStorage.removeItem('sanitary_last_active');
                 location.reload();
             }
         });
     }
 
+    // ==========================================
+    // ⚙️ ฟังก์ชันการทำงานหลักของแดชบอร์ด
+    // ==========================================
     function escapeHTML(str) {
         return String(str)
             .replace(/&/g, "&amp;")
